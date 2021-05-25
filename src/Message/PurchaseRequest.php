@@ -14,44 +14,57 @@ use Omnipay\Common\Message\ResponseInterface;
  */
 class PurchaseRequest extends AbstractRequest
 {
-    public function setPreSharedKey($psk)
+    public function getPreSharedKey()
     {
-        $this->setParameter('pre_shared_key', $psk);
-
-        return $this;
+        return $this->getParameter('pre_shared_key');
     }
 
-    public function setMerchantId($value)
+    public function getMerchantId()
     {
-        $this->setParameter('merchant_id', $value);
-
-        return $this;
+        return $this->getParameter('merchant_id');
     }
 
-    public function setHashMethod($value)
+    public function getHashMethod()
     {
-        $this->setParameter('hash_method', $value);
-
-        return $this;
+        return $this->getParameter('hash_method');
     }
 
-    public function setPassword($value)
+    public function getPassword()
     {
-        $this->setParameter('password', $value);
-
-        return $this;
-    }
-
-    public function setCustomerName($customerName)
-    {
-        $this->setParameter('customer_name', $customerName);
-
-        return $this;
+        return $this->getParameter('password');
     }
 
     public function setAddress1($address1)
     {
         $this->setParameter('address1', $address1);
+
+        return $this;
+    }
+
+    public function setAddress1Mandatory($address1mandatory)
+    {
+        $this->setParameter('address1_mandatory', $address1mandatory);
+
+        return $this;
+    }
+
+    public function setAddress2($address2)
+    {
+        $this->setParameter('address2', $address2);
+
+        return $this;
+    }
+
+    public function setAddress3($address3)
+    {
+        $this->setParameter('address3', $address3);
+
+        return $this;
+    }
+
+    public function setAddress4($address4)
+    {
+        $this->setParameter('address4', $address4);
 
         return $this;
     }
@@ -63,20 +76,95 @@ class PurchaseRequest extends AbstractRequest
         return $this;
     }
 
-    public function initialize(array $parameters = [])
+    public function setCityMandatory($cityMandatory)
     {
-        foreach ($parameters as $key => $value) {
-            $this->setParameter($key, $value);
-        }
+        $this->setParameter('city_mandatory', $cityMandatory);
 
-        return parent::initialize($parameters);
+        return $this;
     }
 
-    protected function boolToString($value)
+    public function setCountryCode($country_code)
     {
-        $val = filter_var($value, FILTER_VALIDATE_BOOLEAN);
+        $this->setParameter('country_code', $country_code);
 
-        return json_encode($val);
+        return $this;
+    }
+
+    public function setCountryMandatory($country_mandatory)
+    {
+        $this->setParameter('country_mandatory', $country_mandatory);
+
+        return $this;
+    }
+
+    public function setCustomerName($customerName)
+    {
+        $this->setParameter('customer_name', $customerName);
+
+        return $this;
+    }
+
+    public function setCv2Mandatory($cv2mandatory)
+    {
+        $this->setParameter('cv2_mandatory', $cv2mandatory);
+
+        return $this;
+    }
+
+    public function setHashMethod($value)
+    {
+        $this->setParameter('hash_method', $value);
+
+        return $this;
+    }
+
+    public function setMerchantId($value)
+    {
+        $this->setParameter('merchant_id', $value);
+
+        return $this;
+    }
+
+    public function setPassword($value)
+    {
+        $this->setParameter('password', $value);
+
+        return $this;
+    }
+
+    public function setPostCode($post_code)
+    {
+        $this->setParameter('post_code', $post_code);
+
+        return $this;
+    }
+
+    public function setPostCodeMandatory($post_code_mandatory)
+    {
+        $this->setParameter('post_code_mandatory', $post_code_mandatory);
+
+        return $this;
+    }
+
+    public function setPreSharedKey($psk)
+    {
+        $this->setParameter('pre_shared_key', $psk);
+
+        return $this;
+    }
+
+    public function setState($state)
+    {
+        $this->setParameter('state', $state);
+
+        return $this;
+    }
+
+    public function setStateMandatory($state_mandatory)
+    {
+        $this->setParameter('state_mandatory', $state_mandatory);
+
+        return $this;
     }
 
     public function setTransactionTime($time)
@@ -84,6 +172,13 @@ class PurchaseRequest extends AbstractRequest
         $this->setParameter('transaction_time', $time);
 
         return $this;
+    }
+
+    protected function boolToString($value)
+    {
+        $val = filter_var($value, FILTER_VALIDATE_BOOLEAN);
+
+        return json_encode($val);
     }
 
     public function getData()
@@ -152,26 +247,6 @@ class PurchaseRequest extends AbstractRequest
     public function send()
     {
         return $this->sendData($this->getData());
-    }
-
-    public function getPreSharedKey()
-    {
-        return $this->getParameter('pre_shared_key');
-    }
-
-    public function getMerchantId()
-    {
-        return $this->getParameter('merchant_id');
-    }
-
-    public function getHashMethod()
-    {
-        return $this->getParameter('hash_method');
-    }
-
-    public function getPassword()
-    {
-        return $this->getParameter('password');
     }
 
     protected function get($key)
